@@ -6,7 +6,7 @@ export function App() {
   return (
     <>
     <Header/>
-    <h1>Hello React World</h1>    
+    <h1>Hello Ignite Community</h1>    
     </>
   )
 }
