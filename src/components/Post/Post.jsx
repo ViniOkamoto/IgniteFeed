@@ -1,3 +1,4 @@
+import { Comment } from './Comment/Comment.jsx';
 import { CommentForm } from './Comment/CommentForm.jsx';
 import styles from './Post.module.css';
 
@@ -25,6 +26,11 @@ export function Post() {
                     <a href="#">#rocketseat</a></p>
             </div>
             <CommentForm/>
+            <div className={styles.commentList}>
+                <Comment/>
+                <Comment/>
+                <Comment/>
+            </div>
         </article>
     );
 }
