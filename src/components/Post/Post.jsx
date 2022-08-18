@@ -1,4 +1,4 @@
-import { CommentForm } from './CommentForm.jsx';
+import { CommentForm } from './Comment/CommentForm.jsx';
 import styles from './Post.module.css';
 
 export function Post() {
