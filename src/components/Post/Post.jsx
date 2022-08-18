@@ -1,3 +1,4 @@
+import { CommentForm } from './CommentForm.jsx';
 import styles from './Post.module.css';
 
 export function Post() {
@@ -23,6 +24,7 @@ export function Post() {
                     <a href="#">#nlw</a>{' '}
                     <a href="#">#rocketseat</a></p>
             </div>
+            <CommentForm/>
         </article>
     );
 }
