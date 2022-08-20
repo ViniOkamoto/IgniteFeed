@@ -10,7 +10,7 @@ export function CommentSection({postComments}) {
     function handleCreateNewComment(newComment) {
         event.preventDefault();
         setComments([...comments,{
-            id:1,
+            id: Math.random() * 100,
             publishedAt: new Date(),
             author: {
               avatarUrl: 'https://github.com/viniokamoto.png',
@@ -18,17 +18,28 @@ export function CommentSection({postComments}) {
               role: 'Software Engineer',
             },
             comment: newComment,
-            likes: 15,
-            hasUserLiked: true,
+            likes: 0,
+            hasUserLike: false,
           }]);
     }
 
+    function deleteComment(commentToDelete){
+        const newCommentsList = comments.filter(comment =>{
+            return comment != commentToDelete;
+        });
+
+        setComments(newCommentsList);
+    }
     return (
         <>
             <CommentForm onSubmit={handleCreateNewComment} />
             <div className={styles.commentList}>
                 {comments.map(comment => {
-                    return <Comment comment={comment}/>;
+                    return <Comment 
+                    key={comment.id} 
+                    comment={comment}
+                    deleteComment = {deleteComment}
+                    />;
                 })}
             </div>
         </>

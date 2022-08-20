@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Avatar } from '../../shared/Avatar';
 import styles from './Comment.module.css';
 
-export function Comment({comment}) {
+export function Comment({comment, deleteComment}) {
 
     const [hasUserLike, setUserLike] = useState(comment.hasUserLike);
     const publishedDateFormatted = format(comment.publishedAt, "do LLLL 'at' h:mmaaaa", {
@@ -17,10 +17,15 @@ export function Comment({comment}) {
         addSuffix: true,
     })
 
-
     function handleLikeClick(){
         setUserLike(hasUserLike ? false : true);
     }
+
+    function handleDeleteComment(){
+        deleteComment(comment);
+    }
+
+
     return (
 
         <div className={styles.comment}>
@@ -39,7 +44,10 @@ export function Comment({comment}) {
                              </time>
 
                         </div>
-                        <button title="Delete Comment">
+                        <button 
+                        onClick={handleDeleteComment} 
+                        title="Delete Comment"
+                        >
                             <Trash size={20}/>
                         </button>
                     </header>
