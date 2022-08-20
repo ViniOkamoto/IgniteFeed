@@ -22,11 +22,13 @@ export function Comment({ comment, deleteComment }) {
     function handleLikeClick() {
         const hasLike = hasUserLike ? false : true;
         setUserLike(hasLike);
-        if (hasLike) {
-            setCommentLikes(commentLikes + 1);
-        } else {
-            setCommentLikes(commentLikes- 1);
-        }
+        setCommentLikes((state) => {
+            if (hasLike) {
+                return state + 1;
+            }
+            return state - 1;
+        });
+
     }
 
     function handleDeleteComment() {
@@ -67,7 +69,7 @@ export function Comment({ comment, deleteComment }) {
                 <footer>
                     <button onClick={handleLikeClick} className={hasUserLike ? styles.thumbWithLike : styles.thumbWithoutLike}>
                         <ThumbsUp />
-                        Curtir <span>{commentLikes}</span>   
+                        Curtir <span>{commentLikes}</span>
                     </button>
                 </footer>
             </div>
