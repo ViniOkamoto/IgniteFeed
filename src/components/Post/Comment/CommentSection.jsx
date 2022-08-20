@@ -7,9 +7,8 @@ export function CommentSection({postComments}) {
 
     const [comments, setComments] = useState(postComments);
 
-    function handleCreateNewComment() {
+    function handleCreateNewComment(newComment) {
         event.preventDefault();
-        const form = event.target;
         setComments([...comments,{
             id:1,
             publishedAt: new Date(),
@@ -18,11 +17,10 @@ export function CommentSection({postComments}) {
               name: 'Vinicius Okamoto',
               role: 'Software Engineer',
             },
-            comment: form.commentField.value,
+            comment: newComment,
             likes: 15,
             hasUserLiked: true,
           }]);
-        form.reset();
     }
 
     return (
