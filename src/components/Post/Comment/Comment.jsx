@@ -5,7 +5,9 @@ import { useState } from 'react';
 import { Avatar } from '../../shared/Avatar';
 import styles from './Comment.module.css';
 
-export function Comment({comment, deleteComment}) {
+export function Comment({ comment, deleteComment }) {
+
+    const [commentLikes, setCommentLikes] = useState(comment.likes);
 
     const [hasUserLike, setUserLike] = useState(comment.hasUserLike);
     const publishedDateFormatted = format(comment.publishedAt, "do LLLL 'at' h:mmaaaa", {
@@ -17,11 +19,17 @@ export function Comment({comment, deleteComment}) {
         addSuffix: true,
     })
 
-    function handleLikeClick(){
-        setUserLike(hasUserLike ? false : true);
+    function handleLikeClick() {
+        const hasLike = hasUserLike ? false : true;
+        setUserLike(hasLike);
+        if (hasLike) {
+            setCommentLikes(commentLikes + 1);
+        } else {
+            setCommentLikes(commentLikes- 1);
+        }
     }
 
-    function handleDeleteComment(){
+    function handleDeleteComment() {
         deleteComment(comment);
     }
 
@@ -29,38 +37,37 @@ export function Comment({comment, deleteComment}) {
     return (
 
         <div className={styles.comment}>
-            <Avatar 
-            src={comment.author.avatarUrl} 
-            alt={comment.author.name} 
-            hasBorder={false}/>
-            
+            <Avatar
+                src={comment.author.avatarUrl}
+                alt={comment.author.name}
+                hasBorder={false} />
+
             <div className={styles.commentBox}>
                 <div className={styles.commentContent}>
                     <header>
                         <div className={styles.authorAndTime}>
                             <strong>{comment.author.name}</strong>
                             <time title={publishedDateFormatted}
-                             dateTime={comment.publishedAt.toISOString()}>{publishedDateRelativeNow} 
-                             </time>
+                                dateTime={comment.publishedAt.toISOString()}>{publishedDateRelativeNow}
+                            </time>
 
                         </div>
-                        <button 
-                        onClick={handleDeleteComment} 
-                        title="Delete Comment"
-                        >
-                            <Trash size={20}/>
+                        <button
+                            onClick={handleDeleteComment}
+                            title="Delete Comment">
+                            <Trash size={20} />
                         </button>
                     </header>
 
 
                     <p>{comment.comment}</p>
                 </div>
-                
-                
+
+
                 <footer>
-                    <button onClick={handleLikeClick} className ={hasUserLike ? styles.thumbWithLike : styles.thumbWithoutLike}>
-                    <ThumbsUp/>
-                    Curtir <span>{comment.likes}</span>
+                    <button onClick={handleLikeClick} className={hasUserLike ? styles.thumbWithLike : styles.thumbWithoutLike}>
+                        <ThumbsUp />
+                        Curtir <span>{commentLikes}</span>   
                     </button>
                 </footer>
             </div>
