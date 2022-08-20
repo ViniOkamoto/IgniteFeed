@@ -25,13 +25,13 @@ export function Post({
 
     const contentRendered = content.map(line => {
         if (line.type == 'paragraph') {
-            return <p>{line.content}</p>
+            return <p key={line.content}>{line.content}</p>
         }
         if (line.type == 'link') {
-            return <p><a href={line.url}>{line.content}</a></p>
+            return <p key={line.content}><a href={line.url}>{line.content}</a></p>
         }
         if (line.type === 'markdown') {
-            markDowns.push(<a href='#'>{line.content}</a>);
+            markDowns.push(<a key={line.content} href='#'>{line.content}</a>);
         }
     })
 
