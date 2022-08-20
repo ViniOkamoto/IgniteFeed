@@ -11,9 +11,15 @@ export function CommentForm({onSubmit}) {
     }
 
     function handleCommentFieldChange(){
-        console.log('bateu');
+        event.target.setCustomValidity('');
         setNewCommentText(event.target.value);
     }
+
+    function handleCommentFieldInvalid(){
+        event.target.setCustomValidity('This field cannot be empty');
+    }
+
+    const isCommentInputEmpty = newCommentText.length === 0;
     return (
         <form className={styles.commentForm} onSubmit = {handleOnSubmit}>
             <strong>Deixe seu feedback</strong>
@@ -23,9 +29,11 @@ export function CommentForm({onSubmit}) {
                 value={newCommentText}
                 onChange={handleCommentFieldChange}
                 placeholder='Leave your comment'
+                onInvalid={handleCommentFieldInvalid}
+                required
             />
             <footer>
-                <button type='submit'>Publish</button>
+                <button type='submit' disabled={isCommentInputEmpty}>Publish</button>
             </footer>
         </form>
     );
