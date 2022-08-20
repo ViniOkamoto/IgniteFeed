@@ -1,23 +1,43 @@
+import { format, formatDistanceToNow } from 'date-fns';
+import { enCA } from 'date-fns/locale';
 import { ThumbsUp, Trash } from 'phosphor-react';
+import { useState } from 'react';
 import { Avatar } from '../../shared/Avatar';
 import styles from './Comment.module.css';
 
-export function Comment() {
+export function Comment({comment}) {
+
+    const [hasUserLike, setUserLike] = useState(comment.hasUserLike);
+    const publishedDateFormatted = format(comment.publishedAt, "do LLLL 'at' h:mmaaaa", {
+        locale: enCA,
+    })
+
+    const publishedDateRelativeNow = formatDistanceToNow(comment.publishedAt, {
+        locale: enCA,
+        addSuffix: true,
+    })
+
+
+    function handleLikeClick(){
+        setUserLike(hasUserLike ? false : true);
+    }
     return (
 
         <div className={styles.comment}>
             <Avatar 
-            src="https://github.com/diego3g.png" 
-            alt="User name avatar" 
+            src={comment.author.avatarUrl} 
+            alt={comment.author.name} 
             hasBorder={false}/>
-            
             
             <div className={styles.commentBox}>
                 <div className={styles.commentContent}>
                     <header>
                         <div className={styles.authorAndTime}>
-                            <strong>Diego Fernandes</strong>
-                            <time title="May 14th at 2pm " dateTime="2022-05-11 08:13:30">About 2h ago</time>
+                            <strong>{comment.author.name}</strong>
+                            <time title={publishedDateFormatted}
+                             dateTime={comment.publishedAt.toISOString()}>{publishedDateRelativeNow} 
+                             </time>
+
                         </div>
                         <button title="Delete Comment">
                             <Trash size={20}/>
@@ -25,14 +45,14 @@ export function Comment() {
                     </header>
 
 
-                    <p>Muito bom Devon, parabéns!! 👏👏</p>
+                    <p>{comment.comment}</p>
                 </div>
                 
                 
                 <footer>
-                    <button>
+                    <button onClick={handleLikeClick} className ={hasUserLike ? styles.thumbWithLike : styles.thumbWithoutLike}>
                     <ThumbsUp/>
-                    Curtir <span>20</span>
+                    Curtir <span>{comment.likes}</span>
                     </button>
                 </footer>
             </div>
