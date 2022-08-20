@@ -1,11 +1,13 @@
 import styles from './CommentForm.module.css';
 
-export function CommentForm() {
+export function CommentForm({onSubmit}) {
+
     return (
-        <form className={styles.commentForm} action="">
+        <form className={styles.commentForm} onSubmit = {onSubmit}>
             <strong>Deixe seu feedback</strong>
 
             <textarea
+                name='commentField'
                 placeholder='Leave your comment'
             />
             <footer>

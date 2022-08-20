@@ -61,10 +61,22 @@
     margin-top: 1rem;
 }
 
-.commentBox footer button {
+.thumbWithoutLike {
     background: transparent;
     border: 0;
     color: var(--gray-400);
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+
+    border-radius: 2px;
+}
+
+.thumbWithLike {
+    background: transparent;
+    border: 0;
+    color: var(--green-300);
     cursor: pointer;
 
     display: flex;
