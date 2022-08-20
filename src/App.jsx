@@ -21,6 +21,35 @@ const posts = [
       { type: 'markdown', content: '#rocketseat' },
     ],
     publishedAt: new Date('2022-08-19 20:00:00'),
+    comments: [
+      {
+        id:1,
+        author: {
+          avatarUrl: 'https://github.com/viniokamoto.png',
+          name: 'Vinicius Okamoto',
+          role: 'Software Engineer',
+        },
+        comment: 'Maneirooooo',
+        likes: 15,
+        hasUserLike: false,
+      },
+    ],
+    comments: [
+      {
+        id:1,
+        publishedAt: new Date('2022-08-17 20:00:00'),
+        author: {
+          avatarUrl: 'https://github.com/viniokamoto.png',
+          name: 'Vinicius Okamoto',
+          role: 'Software Engineer',
+        },
+        comment: 'Funcionou agora hein?',
+        likes: 15,
+        hasUserLike: true,
+      },
+      
+    ],
+
   },
   {
     id: 2,
@@ -38,6 +67,20 @@ const posts = [
       { type: 'markdown', content: '#rocketseat' },
     ],
     publishedAt: new Date('2022-08-17 20:00:00'),
+    comments: [
+      {
+        id:1,
+        publishedAt: new Date('2022-08-17 20:00:00'),
+        author: {
+          avatarUrl: 'https://github.com/viniokamoto.png',
+          name: 'Vinicius Okamoto',
+          role: 'Software Engineer',
+        },
+        comment: 'Maneirooooo',
+        likes: 15,
+        hasUserLiked: true,
+      },
+    ],
   },
 ]
 export function App() {
@@ -46,7 +89,8 @@ export function App() {
     key={post.id}
     author={post.author} 
     content={post.content} 
-    publishedAt={post.publishedAt} 
+    publishedAt={post.publishedAt}
+    comments ={post.comments} 
   />);
 
   return (
