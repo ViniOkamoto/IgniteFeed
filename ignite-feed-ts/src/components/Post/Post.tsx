@@ -1,8 +1,8 @@
 
 import { format, formatDistanceToNow } from 'date-fns';
 import enCA from 'date-fns/locale/en-CA';
-import { Content, LinkContent } from '../../models/content.js';
-import { PostModel } from '../../models/Post.js';
+import { ContentInterface, LinkContentInterface } from '../../models/ContentInterface.js';
+import { PostModel } from '../../models/PostInteface.js';
 import { Avatar } from '../shared/Avatar.jsx';
 import { Comment } from './Comment/Comment.jsx';
 import { CommentForm } from './Comment/CommentForm.jsx';
@@ -30,7 +30,7 @@ export function Post({
             return <p key={line.content}>{line.content}</p>
         }
         if (line.type == 'link') {
-            return <p key={line.content}><a href={(line as LinkContent).src}>{line.content}</a></p>
+            return <p key={line.content}><a href={(line as LinkContentInterface).src}>{line.content}</a></p>
         }
         if (line.type === 'markdown') {
             markDowns.push(<a key={line.content} href='#'>{line.content}</a>);

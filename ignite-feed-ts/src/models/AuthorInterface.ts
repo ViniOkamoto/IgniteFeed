@@ -1,4 +1,4 @@
-export interface Author {
+export interface AuthorInterface {
     avatarUrl: string,
     name: string,
     role: string,
