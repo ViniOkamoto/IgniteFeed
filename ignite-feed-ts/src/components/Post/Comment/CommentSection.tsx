@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { CommentInterface } from "../../../models/Comment";
+import { CommentInterface } from "../../../models/CommentInterface";
 import { Comment } from "./Comment";
 import { CommentForm } from "./CommentForm";
 import styles from "./CommentSection.module.css";
