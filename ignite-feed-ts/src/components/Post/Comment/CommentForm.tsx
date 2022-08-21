@@ -25,7 +25,7 @@ export function CommentForm({onSubmit}: CommentFormProps) {
     const isCommentInputEmpty = newCommentText.length === 0;
     return (
         <form className={styles.commentForm} onSubmit = {handleOnSubmit}>
-            <strong>Deixe seu feedback</strong>
+            <strong>Leave your feedback</strong>
 
             <textarea
                 name='commentField'
