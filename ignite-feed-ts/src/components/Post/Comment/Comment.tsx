@@ -2,10 +2,15 @@ import { format, formatDistanceToNow } from 'date-fns';
 import { enCA } from 'date-fns/locale';
 import { ThumbsUp, Trash } from 'phosphor-react';
 import { useState } from 'react';
+import { CommentInterface } from '../../../models/CommentInterface';
 import { Avatar } from '../../shared/Avatar';
 import styles from './Comment.module.css';
 
-export function Comment({ comment, deleteComment }) {
+interface CommentProps {
+    comment: CommentInterface;
+    deleteComment: (comment:CommentInterface) => void;
+}
+export function Comment({ comment, deleteComment }: CommentProps) {
 
     const [commentLikes, setCommentLikes] = useState(comment.likes);
 
@@ -48,7 +53,10 @@ export function Comment({ comment, deleteComment }) {
                 <div className={styles.commentContent}>
                     <header>
                         <div className={styles.authorAndTime}>
+                            <div className={styles.authorNameAndRole}>
                             <strong>{comment.author.name}</strong>
+                            <span>{comment.author.role}</span>
+                            </div>
                             <time title={publishedDateFormatted}
                                 dateTime={comment.publishedAt.toISOString()}>{publishedDateRelativeNow}
                             </time>
@@ -60,8 +68,6 @@ export function Comment({ comment, deleteComment }) {
                             <Trash size={20} />
                         </button>
                     </header>
-
-
                     <p>{comment.comment}</p>
                 </div>
 
