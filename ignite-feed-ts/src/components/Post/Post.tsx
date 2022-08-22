@@ -1,11 +1,9 @@
 
 import { format, formatDistanceToNow } from 'date-fns';
 import enCA from 'date-fns/locale/en-CA';
-import { ContentInterface, LinkContentInterface } from '../../models/ContentInterface.js';
-import { PostModel } from '../../models/PostInteface.js';
+import { LinkContentInterface } from '../../models/ContentInterface.js';
+import { PostInterface } from '../../models/PostInteface.js';
 import { Avatar } from '../shared/Avatar.jsx';
-import { Comment } from './Comment/Comment.jsx';
-import { CommentForm } from './Comment/CommentForm.jsx';
 import { CommentSection } from './Comment/CommentSection.jsx';
 import styles from './Post.module.css';
 
@@ -13,7 +11,7 @@ export function Post({
     author,
     content,
     publishedAt,
-    comments } : PostModel) {
+    comments } : PostInterface) {
     const publishedDateFormatted = format(publishedAt, "do LLLL 'at' h:mmaaaa", {
         locale: enCA,
     })
