@@ -1,6 +1,6 @@
 # Ignite Feed
 
-<img src ="ignite-logo.svg" height="300em"/>
+<img src ="readme-resources/ignite-logo.svg" height="300em"/>
 
 A platform to involve developers and people related to IT.
 
